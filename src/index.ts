@@ -14,7 +14,7 @@ interface WikipathwaysEnv {
 }
 
 export class MyMCP extends McpAgent {
-    server: any = new McpServer({
+    server = new McpServer({
         name: "wikipathways",
         version: "0.1.0",
     });

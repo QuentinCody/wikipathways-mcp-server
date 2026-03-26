@@ -6,7 +6,7 @@ interface QueryEnv {
     WIKIPATHWAYS_DATA_DO?: unknown;
 }
 
-export function registerQueryData(server: McpServer, env?: QueryEnv) {
+export function registerQueryData(server: McpServer, env?: QueryEnv): void {
     const handler = createQueryDataHandler("WIKIPATHWAYS_DATA_DO", "wikipathways");
 
     server.registerTool(
