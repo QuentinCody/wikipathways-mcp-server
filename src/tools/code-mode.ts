@@ -35,6 +35,8 @@ export function registerCodeMode(
     // Register the execute tool (V8 isolate via DynamicWorkerExecutor)
     const executeTool = createExecuteTool({
         prefix: "wikipathways",
+        // Verifiable provenance: wikipathways_execute results carry a _meta.citation.
+        source: { id: "wikipathways", name: "WikiPathways", url: "https://www.wikipathways.org", license: "CC0 1.0" },
         catalog: wikipathwaysCatalog,
         apiFetch,
         doNamespace: env.WIKIPATHWAYS_DATA_DO,
