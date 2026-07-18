@@ -2,29 +2,28 @@
  * WikiPathways API adapter — wraps wikipathwaysFetch into the ApiFetchFn
  * interface for use by the Code Mode __api_proxy tool.
  *
- * All WikiPathways endpoints are GET-only. The adapter automatically
- * appends format=json to every request's query parameters.
+ * All WikiPathways endpoints are GET-only static files (no query params).
  *
  * The catalog uses paths like:
- *   /findPathwaysByText
- *   /getPathwayInfo
- *   /listOrganisms
+ *   /json/findPathwaysByText.json
+ *   /json/getPathwayInfo.json
+ *   /json/listOrganisms.json
+ *   /wikipathways-assets/pathways/{pwId}/{pwId}.json
  *
- * The adapter passes them directly to the WikiPathways base URL.
+ * The adapter passes them directly to the WikiPathways base URL. Non-JSON
+ * responses (.gpml, .svg) are returned as text.
  */
 
 import type { ApiFetchFn } from "@bio-mcp/shared/codemode/catalog";
 import { wikipathwaysFetch } from "./http";
 
 /**
- * Create an ApiFetchFn that routes through WikiPathways web service.
- * No auth needed — WikiPathways APIs are fully open (CC0 license).
+ * Create an ApiFetchFn that routes through the WikiPathways JSON API.
+ * No auth needed — WikiPathways is fully open (CC0 license).
  */
 export function createWikipathwaysApiFetch(): ApiFetchFn {
     return async (request) => {
         const path = request.path;
-
-        // Merge any query params — format=json is auto-appended by wikipathwaysFetch
         const params = request.params as Record<string, unknown> | undefined;
 
         const response = await wikipathwaysFetch(path, params);

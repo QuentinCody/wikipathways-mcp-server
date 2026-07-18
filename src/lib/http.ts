@@ -1,13 +1,18 @@
 /**
  * WikiPathways HTTP client with rate limit handling.
  *
- * WikiPathways web service is open access (CC0 license), no auth required.
- * All endpoints require ?format=json for JSON responses.
+ * WikiPathways is open access (CC0 license), no auth required.
+ *
+ * REPOINTED 2026-07-16: the classic webservice at webservice.wikipathways.org
+ * was retired upstream (404 on every endpoint). The replacement is the static
+ * JSON API under https://www.wikipathways.org/json/ plus the per-pathway
+ * /wikipathways-assets/ tree. The old `?format=json` query param is gone — the
+ * new endpoints are literal .json/.gpml/.svg files and take no parameters.
  */
 
 import { restFetch, type RestFetchOptions } from "@bio-mcp/shared/http/rest-fetch";
 
-const WIKIPATHWAYS_BASE = "https://webservice.wikipathways.org";
+const WIKIPATHWAYS_BASE = "https://www.wikipathways.org";
 
 export interface WikipathwaysFetchOptions extends Omit<RestFetchOptions, "retryOn"> {
     /** Override base URL */
@@ -15,8 +20,10 @@ export interface WikipathwaysFetchOptions extends Omit<RestFetchOptions, "retryO
 }
 
 /**
- * Fetch from the WikiPathways web service API.
- * Automatically appends format=json to query parameters.
+ * Fetch from the WikiPathways JSON API / assets tree.
+ *
+ * The endpoints are static files, so no query params are sent unless a caller
+ * explicitly passes them (path params are interpolated upstream of this call).
  */
 export async function wikipathwaysFetch(
     path: string,
@@ -25,17 +32,12 @@ export async function wikipathwaysFetch(
 ): Promise<Response> {
     const baseUrl = opts?.baseUrl ?? WIKIPATHWAYS_BASE;
     const headers: Record<string, string> = {
-        Accept: "application/json",
+        // The assets tree serves .gpml/.svg as non-JSON; accept both.
+        Accept: "application/json, text/plain, */*",
         ...(opts?.headers ?? {}),
     };
 
-    // Ensure format=json is always included
-    const mergedParams: Record<string, unknown> = {
-        ...params,
-        format: "json",
-    };
-
-    return restFetch(baseUrl, path, mergedParams, {
+    return restFetch(baseUrl, path, params, {
         ...opts,
         headers,
         retryOn: [429, 500, 502, 503],
