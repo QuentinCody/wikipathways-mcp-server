@@ -203,6 +203,9 @@ export const wikipathwaysCatalog: ApiCatalog = {
             summary:
                 "Full pathway content as JSON (nodes, edges, layout) for ONE pathway — the modern equivalent of GPML. 100–300KB, returned INLINE (does not stage).",
             category: "content",
+            pathParams: [
+            	{ name: "pwId", type: "string", required: true, description: "WikiPathways pathway ID (e.g. `WP554`). It appears twice in this path; pass it ONCE and both tokens are filled." },
+            ],
             responseShape:
                 "{ pathway: { ...metadata }, entitiesById: { [id: string]: { gpmlElementName, type, textContent?, xrefIdentifier?, xrefDataSource?, ... } } }",
             usageHint:
@@ -217,6 +220,9 @@ export const wikipathwaysCatalog: ApiCatalog = {
             summary:
                 "Raw GPML (Graphical Pathway Markup Language, XML) for ONE pathway. Returned as a TEXT string, not JSON (~40KB for WP554).",
             category: "content",
+            pathParams: [
+            	{ name: "pwId", type: "string", required: true, description: "WikiPathways pathway ID (e.g. `WP554`). It appears twice in this path; pass it ONCE and both tokens are filled." },
+            ],
             usageHint:
                 "Replaces old getPathway / getPathwayAs(fileType='gpml'). No longer Base64-encoded — raw XML text. The ID repeats in the path: use a template string, pass no params object.",
             example: "const id = 'WP554';\nconst gpml = await api.get(`/wikipathways-assets/pathways/${id}/${id}.gpml`);\nreturn { bytes: String(gpml).length };",
@@ -227,6 +233,9 @@ export const wikipathwaysCatalog: ApiCatalog = {
             summary:
                 "Rendered pathway diagram as SVG for ONE pathway. Returned as a TEXT string (~100KB for WP554).",
             category: "content",
+            pathParams: [
+            	{ name: "pwId", type: "string", required: true, description: "WikiPathways pathway ID (e.g. `WP554`). It appears twice in this path; pass it ONCE and both tokens are filled." },
+            ],
             usageHint:
                 "Replaces old getPathwayAs(fileType='svg'). No longer Base64-encoded. Large — return a length/summary, not the markup. The ID repeats in the path: use a template string, pass no params object.",
             example: "const id = 'WP554';\nconst svg = await api.get(`/wikipathways-assets/pathways/${id}/${id}.svg`);\nreturn { bytes: String(svg).length };",
