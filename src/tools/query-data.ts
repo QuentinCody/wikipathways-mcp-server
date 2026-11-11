@@ -1,5 +1,6 @@
 import type { McpServer } from "@bio-mcp/shared/mcp";
 import { z } from "zod";
+import { wikipathwaysResponse } from "../lib/tool-result";
 import { createQueryDataHandler } from "@bio-mcp/shared/staging/utils";
 
 interface QueryEnv {
@@ -9,8 +10,8 @@ interface QueryEnv {
 export function registerQueryData(server: McpServer, env?: QueryEnv): void {
     const handler = createQueryDataHandler("WIKIPATHWAYS_DATA_DO", "wikipathways");
 
-    server.registerTool(
-        "wikipathways_query_data",
+    for (const toolName of ["wikipathways_query_data", "mcp_wikipathways_query_data"]) server.registerTool(
+        toolName,
         {
             title: "Query Staged WikiPathways Data",
             description:
@@ -29,7 +30,6 @@ export function registerQueryData(server: McpServer, env?: QueryEnv): void {
                     .int()
                     .positive()
                     .max(10000)
-                    .default(100)
                     .optional()
                     .describe("Maximum number of rows to return (default: 100)"),
             },
@@ -37,10 +37,10 @@ export function registerQueryData(server: McpServer, env?: QueryEnv): void {
         async (args, extra) => {
             const runtimeEnv =
                 env || (extra as { env?: QueryEnv })?.env || {};
-            return handler(
+            return wikipathwaysResponse(() => handler(
                 args as Record<string, unknown>,
                 runtimeEnv as Record<string, unknown>,
-            );
+            ), runtimeEnv, toolName, extra, args);
         },
     );
 }

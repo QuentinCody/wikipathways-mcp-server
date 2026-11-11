@@ -2,7 +2,7 @@
  * WikiPathways API adapter — wraps wikipathwaysFetch into the ApiFetchFn
  * interface for use by the Code Mode __api_proxy tool.
  *
- * All WikiPathways endpoints are GET-only static files (no query params).
+ * Static JSON/assets are GET-only files; /sparql/ helpers use bounded SELECT queries.
  *
  * The catalog uses paths like:
  *   /json/findPathwaysByText.json
@@ -15,6 +15,8 @@
  */
 
 import type { ApiFetchFn } from "@bio-mcp/shared/codemode/catalog";
+import { sparqlRead } from "./sparql";
+import { nativeError } from "./native-error";
 import { wikipathwaysFetch } from "./http";
 
 /**
@@ -23,28 +25,13 @@ import { wikipathwaysFetch } from "./http";
  */
 export function createWikipathwaysApiFetch(): ApiFetchFn {
     return async (request) => {
+        if (request.path.startsWith("/sparql/")) return sparqlRead(request);
         const path = request.path;
         const params = request.params as Record<string, unknown> | undefined;
 
         const response = await wikipathwaysFetch(path, params);
 
-        if (!response.ok) {
-            let errorBody: string;
-            try {
-                errorBody = await response.text();
-            } catch {
-                errorBody = response.statusText;
-            }
-            const error = new Error(
-                `HTTP ${response.status}: ${errorBody.slice(0, 200)}`,
-            ) as Error & {
-                status: number;
-                data: unknown;
-            };
-            error.status = response.status;
-            error.data = errorBody;
-            throw error;
-        }
+        if (!response.ok) throw await nativeError(response, response.url || `https://www.wikipathways.org${path}`);
 
         const contentType = response.headers.get("content-type") || "";
         if (!contentType.includes("json")) {

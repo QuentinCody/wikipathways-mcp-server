@@ -90,8 +90,7 @@ if (getSchema) {
 }
 
 if (http) {
-  assertContains('src/lib/http.ts', http, 'webservice.wikipathways.org', 'http.ts has correct base URL');
-  assertContains('src/lib/http.ts', http, 'format', 'http.ts auto-appends format param');
+  assertContains('src/lib/http.ts', http, 'const WIKIPATHWAYS_BASE = "https://www.wikipathways.org"', 'http.ts uses current static API host');
 }
 
 if (adapter) {

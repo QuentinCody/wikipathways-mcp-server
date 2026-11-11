@@ -1,0 +1,357 @@
+{
+  "datasets": {
+    "head": {
+      "link": [],
+      "vars": [
+        "dataset",
+        "title",
+        "date",
+        "license"
+      ]
+    },
+    "results": {
+      "distinct": false,
+      "ordered": true,
+      "bindings": [
+        {
+          "dataset": {
+            "type": "uri",
+            "value": "https://data.wikipathways.org/20260810/citedin"
+          },
+          "title": {
+            "type": "literal",
+            "value": "Citations to WikiPathways pathways"
+          },
+          "license": {
+            "type": "uri",
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/"
+          }
+        },
+        {
+          "dataset": {
+            "type": "uri",
+            "value": "https://data.wikipathways.org/20260810/rdf/"
+          },
+          "title": {
+            "type": "literal",
+            "value": "WikiPathways RDF 20260810"
+          },
+          "date": {
+            "type": "typed-literal",
+            "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+            "value": "2026-08-10T00:49:27.872Z"
+          },
+          "license": {
+            "type": "uri",
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/"
+          }
+        },
+        {
+          "dataset": {
+            "type": "uri",
+            "value": "https://data.wikipathways.org/20260810/smiles"
+          },
+          "title": {
+            "type": "literal",
+            "value": "Compound SMILES from Wikidata"
+          },
+          "license": {
+            "type": "uri",
+            "value": "http://creativecommons.org/publicdomain/zero/1.0/"
+          }
+        }
+      ]
+    }
+  },
+  "xrefs": {
+    "head": {
+      "link": [],
+      "vars": [
+        "pathway",
+        "pathway_id",
+        "title",
+        "organism",
+        "page",
+        "node",
+        "label",
+        "native_id",
+        "native_source",
+        "mapping_predicate",
+        "mapped_id"
+      ]
+    },
+    "results": {
+      "distinct": false,
+      "ordered": true,
+      "bindings": [
+        {
+          "pathway": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          },
+          "pathway_id": {
+            "type": "literal",
+            "value": "WP554"
+          },
+          "title": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "ACE inhibitor pathway"
+          },
+          "organism": {
+            "type": "literal",
+            "value": "Homo sapiens"
+          },
+          "page": {
+            "type": "uri",
+            "value": "http://www.wikipathways.org/instance/WP554_r139872"
+          },
+          "node": {
+            "type": "uri",
+            "value": "https://identifiers.org/chebi/CHEBI:35457"
+          },
+          "label": {
+            "type": "literal",
+            "value": "ACE Inhibitor"
+          },
+          "native_id": {
+            "type": "literal",
+            "value": "CHEBI:35457"
+          },
+          "native_source": {
+            "type": "literal",
+            "value": "ChEBI"
+          },
+          "mapping_predicate": {
+            "type": "uri",
+            "value": "http://vocabularies.wikipathways.org/wp#bdbChEBI"
+          },
+          "mapped_id": {
+            "type": "uri",
+            "value": "https://identifiers.org/chebi/CHEBI:35457"
+          }
+        },
+        {
+          "pathway": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          },
+          "pathway_id": {
+            "type": "literal",
+            "value": "WP554"
+          },
+          "title": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "ACE inhibitor pathway"
+          },
+          "organism": {
+            "type": "literal",
+            "value": "Homo sapiens"
+          },
+          "page": {
+            "type": "uri",
+            "value": "http://www.wikipathways.org/instance/WP554_r139872"
+          },
+          "node": {
+            "type": "uri",
+            "value": "https://identifiers.org/chebi/CHEBI:35457"
+          },
+          "label": {
+            "type": "literal",
+            "value": "ACE Inhibitor"
+          },
+          "native_id": {
+            "type": "literal",
+            "value": "CHEBI:35457"
+          },
+          "native_source": {
+            "type": "literal",
+            "value": "ChEBI"
+          },
+          "mapping_predicate": {
+            "type": "uri",
+            "value": "http://vocabularies.wikipathways.org/wp#bdbWikidata"
+          },
+          "mapped_id": {
+            "type": "uri",
+            "value": "http://www.wikidata.org/entity/Q288280"
+          }
+        },
+        {
+          "pathway": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          },
+          "pathway_id": {
+            "type": "literal",
+            "value": "WP554"
+          },
+          "title": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "ACE inhibitor pathway"
+          },
+          "organism": {
+            "type": "literal",
+            "value": "Homo sapiens"
+          },
+          "page": {
+            "type": "uri",
+            "value": "http://www.wikipathways.org/instance/WP554_r139872"
+          },
+          "node": {
+            "type": "uri",
+            "value": "https://identifiers.org/chebi/CHEBI:35457"
+          },
+          "label": {
+            "type": "literal",
+            "value": "ACE inhibitor"
+          },
+          "native_id": {
+            "type": "literal",
+            "value": "CHEBI:35457"
+          },
+          "native_source": {
+            "type": "literal",
+            "value": "ChEBI"
+          },
+          "mapping_predicate": {
+            "type": "uri",
+            "value": "http://vocabularies.wikipathways.org/wp#bdbChEBI"
+          },
+          "mapped_id": {
+            "type": "uri",
+            "value": "https://identifiers.org/chebi/CHEBI:35457"
+          }
+        }
+      ]
+    }
+  },
+  "interactions": {
+    "head": {
+      "link": [],
+      "vars": [
+        "pathway",
+        "pathway_id",
+        "title",
+        "organism",
+        "page",
+        "interaction",
+        "predicate",
+        "value"
+      ]
+    },
+    "results": {
+      "distinct": false,
+      "ordered": true,
+      "bindings": [
+        {
+          "pathway": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          },
+          "pathway_id": {
+            "type": "literal",
+            "value": "WP554"
+          },
+          "title": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "ACE inhibitor pathway"
+          },
+          "organism": {
+            "type": "literal",
+            "value": "Homo sapiens"
+          },
+          "page": {
+            "type": "uri",
+            "value": "http://www.wikipathways.org/instance/WP554_r139872"
+          },
+          "interaction": {
+            "type": "uri",
+            "value": "http://rdf.wikipathways.org/Pathway/WP554_r139872/WP/Interaction/a0cae"
+          },
+          "predicate": {
+            "type": "uri",
+            "value": "http://purl.org/dc/terms/isPartOf"
+          },
+          "value": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          }
+        },
+        {
+          "pathway": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          },
+          "pathway_id": {
+            "type": "literal",
+            "value": "WP554"
+          },
+          "title": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "ACE inhibitor pathway"
+          },
+          "organism": {
+            "type": "literal",
+            "value": "Homo sapiens"
+          },
+          "page": {
+            "type": "uri",
+            "value": "http://www.wikipathways.org/instance/WP554_r139872"
+          },
+          "interaction": {
+            "type": "uri",
+            "value": "http://rdf.wikipathways.org/Pathway/WP554_r139872/WP/Interaction/a0cae"
+          },
+          "predicate": {
+            "type": "uri",
+            "value": "http://purl.org/dc/terms/references"
+          },
+          "value": {
+            "type": "uri",
+            "value": "https://identifiers.org/pubmed/18035185"
+          }
+        },
+        {
+          "pathway": {
+            "type": "uri",
+            "value": "https://identifiers.org/wikipathways/WP554_r139872"
+          },
+          "pathway_id": {
+            "type": "literal",
+            "value": "WP554"
+          },
+          "title": {
+            "type": "literal",
+            "xml:lang": "en",
+            "value": "ACE inhibitor pathway"
+          },
+          "organism": {
+            "type": "literal",
+            "value": "Homo sapiens"
+          },
+          "page": {
+            "type": "uri",
+            "value": "http://www.wikipathways.org/instance/WP554_r139872"
+          },
+          "interaction": {
+            "type": "uri",
+            "value": "http://rdf.wikipathways.org/Pathway/WP554_r139872/WP/Interaction/a0cae"
+          },
+          "predicate": {
+            "type": "uri",
+            "value": "http://vocabularies.wikipathways.org/wp#isAbout"
+          },
+          "value": {
+            "type": "uri",
+            "value": "http://rdf.wikipathways.org/Pathway/WP554_r139872/Interaction/a0cae"
+          }
+        }
+      ]
+    }
+  }
+}

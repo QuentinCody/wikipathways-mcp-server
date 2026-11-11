@@ -6,9 +6,13 @@
 
 import { RestStagingDO } from "@bio-mcp/shared/staging/rest-staging-do";
 import type { SchemaHints } from "@bio-mcp/shared/staging/schema-inference";
+import { rdfSchemaHints, rdfTables } from "./lib/rdf-staging";
 
 export class WikipathwaysDataDO extends RestStagingDO {
+    protected getTabularData(data: unknown): unknown { return rdfTables(data) ?? data; }
+
     protected getSchemaHints(data: unknown): SchemaHints | undefined {
+        if (rdfTables(data)) return rdfSchemaHints;
         if (!data || typeof data !== "object") return undefined;
 
         const obj = data as Record<string, unknown>;

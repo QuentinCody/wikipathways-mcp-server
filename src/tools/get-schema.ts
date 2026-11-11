@@ -1,5 +1,6 @@
 import type { McpServer } from "@bio-mcp/shared/mcp";
 import { z } from "zod";
+import { wikipathwaysResponse } from "../lib/tool-result";
 import { createGetSchemaHandler } from "@bio-mcp/shared/staging/utils";
 
 interface SchemaEnv {
@@ -9,8 +10,8 @@ interface SchemaEnv {
 export function registerGetSchema(server: McpServer, env?: SchemaEnv): void {
     const handler = createGetSchemaHandler("WIKIPATHWAYS_DATA_DO", "wikipathways");
 
-    server.registerTool(
-        "wikipathways_get_schema",
+    for (const toolName of ["wikipathways_get_schema", "mcp_wikipathways_get_schema"]) server.registerTool(
+        toolName,
         {
             title: "Get Staged Data Schema",
             description:
@@ -29,11 +30,11 @@ export function registerGetSchema(server: McpServer, env?: SchemaEnv): void {
         async (args, extra) => {
             const runtimeEnv =
                 env || (extra as { env?: SchemaEnv })?.env || {};
-            return handler(
+            return wikipathwaysResponse(() => handler(
                 args as Record<string, unknown>,
                 runtimeEnv as Record<string, unknown>,
                 (extra as Record<string, unknown>),
-            );
+            ), runtimeEnv, toolName, extra, args);
         },
     );
 }
